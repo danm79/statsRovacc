@@ -1,0 +1,66 @@
+<?php 
+$title = 'My Stats';
+$this->headTitle($title);
+$tipTitle = 'ATC Online';
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+
+<table class="table">
+<tr>
+    <th>Nume</th>
+</tr>
+<?php foreach ($stats as $stat) : ?>
+
+<?php
+
+$data = json_decode($stat->stats);
+
+
+$sts = '
+	<table>
+		<tbody>	
+';
+
+foreach($data as $item):
+
+if(isset($item->freq)){
+
+
+$sts .= '
+	<tr>
+		<td>'.$item->name.'</td>
+		<td>'.$item->radar.'</td>
+		<td>'.$item->freq.'</td>
+	</tr>
+';
+} else {
+	$tipTitle = ucfirst($stat->nume).' Flights';
+
+
+$sts .= '
+	<tr>
+		<td>'.$item->name.'</td>
+		<td>'.$item->callsign.'</td>
+		<td>'.$item->aircraft.'</td>
+		<td>'.$item->departure.'</td>
+		<td>'.$item->arrival.'</td>
+	</tr>
+';
+}
+
+
+
+endforeach;
+
+$sts .= '</tbody>
+	</table>';
+
+?>
+
+
+<tr>
+    <td><a href="#" data-toggle="popover" data-original-title="<?php echo $tipTitle; ?>" title="" data-content="<?php echo $sts; ?>"><?php echo $this->escapeHtml($stat->nume);?></a></td>
+</tr>
+<?php endforeach; ?>
+</table>

@@ -1,0 +1,34 @@
+<?php 
+$title = 'ROvACC ATC Stats';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+
+<table class="table table-condensed table-hover table-custom">
+<tr class="info">
+    <th>Name</th>
+    <th>Rating</th>
+    <th>Ground</th>
+    <th>Tower</th>
+    <th>Approach</th>
+    <th>Control</th>
+    <th>Other</th>
+    <th>Last time online</th>
+    <th>Last position</th>
+</tr>
+<?php foreach ($stats as $stat) : ?>
+
+<tr>
+    <td><?php echo $this->escapeHtml($stat->nume);?></td>
+    <td><?php echo $this->escapeHtml($stat->rating);?></td>
+    <td><?php echo $this->escapeHtml($stat->GND);?></td>
+    <td><?php echo $this->escapeHtml($stat->TWR);?></td>
+    <td><?php echo $this->escapeHtml($stat->APP);?></td>
+    <td><?php echo $this->escapeHtml($stat->CTR);?></td>
+    <td><?php echo $this->escapeHtml($stat->OTHER);?></td>
+    <td><?php echo $this->escapeHtml($stat->lastonline);?></td>
+    <td><?php echo $this->escapeHtml($stat->lastpos);?></td>
+</tr>
+<?php endforeach; ?>
+</table>
